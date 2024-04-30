@@ -1,0 +1,45 @@
+[debug] [2024-04-30T05:55:03.037Z] ----------------------------------------------------------------------
+[debug] [2024-04-30T05:55:03.040Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Lenovo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-04-30T05:55:03.040Z] CLI Version:   9.23.3
+[debug] [2024-04-30T05:55:03.040Z] Platform:      win32
+[debug] [2024-04-30T05:55:03.041Z] Node Version:  v14.15.5
+[debug] [2024-04-30T05:55:03.041Z] Time:          Tue Apr 30 2024 00:55:03 GMT-0500 (hora de verano central)
+[debug] [2024-04-30T05:55:03.042Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-04-30T05:55:03.043Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2024-04-30T05:55:03.111Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-04-30T05:55:03.111Z] > authorizing via signed-in user (eisensistemacompra@gmail.com)
+[debug] [2024-04-30T05:55:03.111Z] [iam] checking project exercise-xpert for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-04-30T05:55:03.112Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2024-04-30T05:55:03.113Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2024-04-30T05:55:03.322Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2024-04-30T05:55:03.323Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2024-04-30T05:55:03.345Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Tue, 30 Apr 2024 05:55:03 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2024-04-30T05:55:03.351Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/exercise-xpert:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-04-30T05:55:03.724Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 30 Apr 2024 05:55:03 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=215","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2024-04-30T05:55:03.727Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project exercise-xpert:
+
+  firebase.projects.get
+  firebasehosting.sites.update
+[debug] [2024-04-30T05:55:03.728Z] > refreshing access token with scopes: []
+[debug] [2024-04-30T05:55:03.728Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2024-04-30T05:55:03.905Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","date":"Tue, 30 Apr 2024 05:55:03 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2024-04-30T05:55:03.922Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/exercise-xpert [none]
+[debug] [2024-04-30T05:55:04.232Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/exercise-xpert 403
+[debug] [2024-04-30T05:55:04.232Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/exercise-xpert {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2024-04-30T05:55:04.233Z] HTTP Error: 403, The caller does not have permission
+[debug] [2024-04-30T05:55:04.736Z] FirebaseError: HTTP Error: 403, The caller does not have permission
+    at module.exports (C:\Users\Lenovo\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:38:12)
+    at Client.doRequest (C:\Users\Lenovo\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:241:23)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async Client.request (C:\Users\Lenovo\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:96:20)
+    at async Object.getFirebaseProject (C:\Users\Lenovo\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:290:21)
+    at async Object.getDefaultHostingSite (C:\Users\Lenovo\AppData\Roaming\npm\node_modules\firebase-tools\lib\getDefaultHostingSite.js:8:21)
+    at async requireHostingSite (C:\Users\Lenovo\AppData\Roaming\npm\node_modules\firebase-tools\lib\requireHostingSite.js:9:18)
+    at async Object.fn (C:\Users\Lenovo\AppData\Roaming\npm\node_modules\firebase-tools\lib\commands\deploy.js:73:9)
+    at async C:\Users\Lenovo\AppData\Roaming\npm\node_modules\firebase-tools\lib\command.js:188:17
+[error] 
+[error] Error: Failed to get Firebase project exercise-xpert. Please make sure the project exists and your account has permission to access it.

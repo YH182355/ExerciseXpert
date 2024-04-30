@@ -1,0 +1,229 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rutinas</title>
+ </head>
+ <body>
+
+  <!-- navbar -->
+<navbar [Usuario] = "Usuario"></navbar>
+
+<section class="container">
+
+  <!-- Título -->
+  <div class="title" id="titulo">
+    Rutinas
+  </div>
+  <br>
+
+<!-- Sección de radio buttons -->
+<section class="Radios">
+  <div class="container text-center">
+    <div class="row" style="margin: 0;">
+      <div class="col-3">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+          <label class="form-check-label" for="inlineRadio1">Hombre</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" >
+          <label class="form-check-label" for="inlineRadio2">Mujer</label>
+        </div>
+      </div>
+      <div class="col-9">
+        <div class="BtnRutina" style="overflow: hidden;">
+          <button type="button" class="btn btn-outline-primary" style="float: right;"><a href="new" style="text-decoration: none;">Crear Rutina</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</section>
+  
+    
+
+
+  <!-- Sección de lista de navegación -->
+  <div class="">
+    <section class="Filtro" style="margin-top: 10px;">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link"  [ngClass]="{ 'active': active=== 'Todos' }" (click)="TodasRutinas()">Todos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{ 'active': active=== 'Pesa rusa' }" (click)="RutinasEquipo('Pesa rusa')">Pesa Rusa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{ 'active': active=== 'Estiramientos' }" (click)="RutinasEquipo('Estiramientos')">Estiramientos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{ 'active': active=== 'Peso corporal' }" (click)="RutinasEquipo('Peso corporal')">Peso Corporal</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{ 'active': active=== 'Barra' }" (click)="RutinasEquipo('Barra')">Barra</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{ 'active': active=== 'Mancuernas' }" (click)="RutinasEquipo('Mancuernas')">Mancuernas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{ 'active': active=== 'Cable' }" (click)="RutinasEquipo('Cable')">Cables</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{ 'active': active=== 'Bandas elásticas' }" (click)="RutinasEquipo('Bandas elásticas')">Banda</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{ 'active': active=== 'Plancha' }" (click)="RutinasEquipo('Plancha')">Plate</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{ 'active': active=== 'TRX' }" (click)="RutinasEquipo('TRX')">TRX</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{ 'active': active=== 'Yoga' }" (click)="RutinasEquipo('Yoga')">Yoga</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{ 'active': active=== 'Mis Rutinas' }" (click)="UsuarioRutinas()">Mis Rutinas</a>
+        </li>
+      </ul>
+    </section>
+  </div>
+  
+  <br>
+    <!-- Sección de botones de Dificultad -->
+    <section *ngIf="difi">
+      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" name="difficulty" id="D1" value="D1" (click) = "RutinasDificultad('Principiante')">
+        <label class="btn btn-outline-primary" for="D1" id="Principiante">Principiante</label>
+      
+        <input type="radio" class="btn-check" name="difficulty" id="D2" value="D2" (click) = "RutinasDificultad('Intermedio')">
+        <label class="btn btn-outline-primary" for="D2" id="Intermedio">Intermedio</label>
+      
+        <input type="radio" class="btn-check" name="difficulty" id="D3" value="D3" (click) = "RutinasDificultad('Avanzado')">
+        <label class="btn btn-outline-primary" for="D3" id="Avanzado">Avanzado</label>
+      </div>
+    <br>
+    <br>
+    </section>
+    
+    <!-- Sección de cards -->
+  
+    <div class="card-container">
+      <ng-container *ngIf="rut">
+        <ng-container *ngFor="let eo of UsuarioCards">
+          <div class="card">
+            <a><img [src]="eo.UrlImagen" alt="Imagen destacada" class="card-img-top"></a>
+          <div class="card-body">
+            <h4 class="card-header">{{eo.Nombre}}</h4>
+            <p class="card-title"></p>
+            <p class="card-text">
+              <b>Objetivo:</b> {{eo.Objetivo}} <br>
+              <b>Dificultad:</b> {{eo.Dificultad}} <br>
+              <b>Equipos:</b> {{eo.Equipos}} <br>
+              <br>
+            </p>
+            <button data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="abrir(eo)"  data-bs-toggle="modal" title="Editar" class="btn btn-success btn-square">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+              </svg>
+            </button>
+  
+            <button (click)="borrar(eo)" title="Borrar" class="btn btn-danger btn-square">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+              </svg>
+            </button>        
+          </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    
+      <ng-container *ngIf="!rut">
+        <ng-container *ngFor="let row of CardsRutinas">
+          <div class="card">
+            <a (click)="clickRutina(row)"><img [src]="row.UrlImagen" alt="Imagen destacada" class="card-img-top"></a>
+          <div class="card-body"  (click)="clickRutina(row)">
+            <a style="text-decoration: none; color: black; cursor: pointer;"><h4 class="card-header">{{row.Nombre}}</h4></a>
+            <p class="card-title"></p>
+            <p class="card-text">
+              <b>Objetivo:</b> {{row.Objetivo}} <br>
+              <b>Dificultad:</b> {{row.Dificultad}} <br>
+              <b>Equipo:</b> {{row.Equipo}} <br>
+  
+            </p>
+  
+          </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  
+  </section>
+  
+  
+  
+    <!-- Footer -->
+  <Foooter></Foooter>
+    
+   </body>
+   </html>
+   
+
+
+
+   <!-- #Modal -->
+   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Rutina</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+  
+          
+          <div class="title">
+            Edita tu Rutina Personalizada
+            </div>
+       
+          <!-- Nombre y Referencia -->
+  
+            <label for="inputState" class="form-label">Nombre de la Rutina:</label>
+            <input [(ngModel)]="RutinaUsuario.Nombre" type="text" class="form-control" placeholder="Nombre"
+              aria-label="First name">
+  
+              <label class="form-label">Dificultad:</label>
+              <select [(ngModel)]="RutinaUsuario.Dificultad" title="dif" id="dif" class="form-select">
+                <option hidden value="" disabled selected>Seleccione una Dificultad</option>
+                <option>Principiante</option>
+                <option>Intermedio</option>
+                <option>Avanzado</option>
+              </select>
+                    
+              <label for="inputState" class="form-label">Objetivo:</label>
+              <input [(ngModel)]="RutinaUsuario.Objetivo" type="text" class="form-control" placeholder="Objetivo"
+                aria-label="First name">
+           
+              <label for="inputState" class="form-label">Series:</label>
+              <input [(ngModel)]="RutinaUsuario.Series" type="text" class="form-control" placeholder="Series"
+                aria-label="Last name">
+           
+  
+  
+          <!-- Selección de imágenes -->
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Portada de la Rutina:</label>
+            <input (change)="handleImageUpload($event)" accept="image/*" title="Imagen" class="form-control" type="file" id="efe" >
+          </div>
+      
+  
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" (click)="editar()" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

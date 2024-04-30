@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="registro.css">
+</head>
+<body>
+	
+	<div class="box">
+		<section autocomplete="off">
+			<h2>SignUp</h2>
+			<div class="inputBox">
+				<input type="text" required="required" [(ngModel)]="NuevoUsuario.Nombre">
+				<span>Name</span>
+				<i></i>
+			</div>
+			<div class="inputBox">
+				<input type="text" required="required" maxlength="6" [(ngModel)]="NuevoUsuario.User">
+				<span>User</span>
+				<i></i>
+			</div>
+			<div class="inputBox">
+				<input type="password" required="required" [(ngModel)]="NuevoUsuario.Password" >
+				<span>Password</span>
+				<i></i>
+			</div>
+			<div class="links">
+				<a href="#"></a>
+				<a href="Login">SignIn</a>
+			</div>
+			<input type="submit" value="SignUp" (click) = "Registroo()">
+		</section>
+	</div>
+</body>
+</html>

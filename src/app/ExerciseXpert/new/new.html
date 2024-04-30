@@ -1,0 +1,149 @@
+<navbar></navbar>
+
+<div class="section">
+    <div class="container">
+
+        <div class="title">
+            Crear Rutina Personalizada
+            </div>
+       
+          <!-- Nombre y Referencia -->
+          <div class="row g-3">
+            <div class="col">
+              <label for="inputState" class="form-label">Nombre de la Rutina:</label>
+              <input [(ngModel)]="RutinaUsuario.Nombre" type="text" class="form-control" placeholder="Nombre"
+                aria-label="First name">
+            </div>
+            <div class="col">
+                <label class="form-label">Dificultad:</label>
+                <select [(ngModel)]="RutinaUsuario.Dificultad" title="dif" id="dif" class="form-select">
+                  <option hidden value="" disabled selected>Seleccione una Dificultad</option>
+                  <option>Principiante</option>
+                  <option>Intermedio</option>
+                  <option>Avanzado</option>
+                </select>
+            </div>
+          </div>
+      
+          <!-- Marca y Modelo -->
+          <div class="row g-3">
+            <div class="col">
+              <label for="inputState" class="form-label">Objetivo:</label>
+              <input [(ngModel)]="RutinaUsuario.Objetivo" type="text" class="form-control" placeholder="Objetivo"
+                aria-label="First name">
+            </div>
+            <div class="col">
+              <label for="inputState" class="form-label">Series:</label>
+              <input [(ngModel)]="RutinaUsuario.Series" type="text" class="form-control" placeholder="Series"
+                aria-label="Last name">
+            </div>
+          </div>
+      
+          <!-- Equipos -->
+          
+          <div class="row g-3">
+            <label class="form-label">Equipo:</label>
+            <div class="col">
+              
+              <div class="form-check">
+                <input (click)="mostrarEjercicios('Pesa rusa')" [(ngModel)]="PesaRusa" class="form-check-input" type="checkbox" id="flexCheckDefault">
+                <label   class="form-check-label" for="flexCheckDefault">
+                  Pesa Rusa
+                </label>
+              </div>
+              <div class="form-check">
+                <input (click)="mostrarEjercicios('Estiramientos')"  [(ngModel)]="Estiramientos" class="form-check-input" type="checkbox"  id="flexCheckDefault13">
+                <label class="form-check-label" for="flexCheckDefault13">
+                  Estiramientos
+                </label>
+              </div>
+              <div class="form-check">
+                <input (click)="mostrarEjercicios('Peso corporal')"  [(ngModel)]="PesoCorporal" class="form-check-input" type="checkbox" id="flexCheckDefault2">
+                <label class="form-check-label" for="flexCheckDefault2">
+                  Peso Corporal
+                </label>
+              </div>
+              <div class="form-check">
+                <input (click)="mostrarEjercicios('Bandas elásticas')"  [(ngModel)]="Banda" class="form-check-input" type="checkbox" id="flexCheckDefault32">
+                <label class="form-check-label" for="flexCheckDefault32">
+                  Bandas Elásticas
+                </label>
+              </div>
+
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input (click)="mostrarEjercicios('Barra')"  [(ngModel)]="Barra" class="form-check-input" type="checkbox" id="flexCheckDefault4">
+                  <label class="form-check-label" for="flexCheckDefault4">
+                    Barra 
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input (click)="mostrarEjercicios('Mancuernas')"  [(ngModel)]="Mancuernas" class="form-check-input" type="checkbox" id="flexCheckDefault5">
+                  <label class="form-check-label" for="flexCheckDefault5">
+                    Mancuernas
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input (click)="mostrarEjercicios('Cable')" [(ngModel)]="Cables" class="form-check-input" type="checkbox"  id="flexCheckDefault6">
+                  <label class="form-check-label" for="flexCheckDefault6">
+                    Cables
+                  </label>
+                </div>
+                </div>
+                <div class="col">
+                  <div class="form-check">
+                    <input (click)="mostrarEjercicios('Plancha')"  [(ngModel)]="Plate" class="form-check-input" type="checkbox" id="flexCheckDefault7">
+                    <label class="form-check-label" for="flexCheckDefault7">
+                      Plate 
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input (click)="mostrarEjercicios('TRX')" [(ngModel)]="TRX" class="form-check-input" type="checkbox" id="flexCheckDefault8">
+                    <label class="form-check-label" for="flexCheckDefault8">
+                      TRX
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input (click)="mostrarEjercicios('Yoga')" [(ngModel)]="Yoga" class="form-check-input" type="checkbox" id="flexCheckDefault9">
+                    <label class="form-check-label" for="flexCheckDefault9">
+                      Yoga
+                    </label>
+                  </div>
+             
+          </div>
+      
+          <!-- Selección de ejercicios -->
+          <div class="row">
+            <div *ngFor="let equipo of sdEquipos" class="col-md-4">
+              <div class="card">
+                <div class="titlee">{{ equipo }}</div>
+                <div class="card-body">
+                  <div *ngFor="let ejercicio of ejerciciosDelEquipo[equipo]" class="form-check">
+                    <strong>Ejercicio: {{ ejercicio.Nombre }}</strong>
+                    <br>
+                    <div *ngFor="let ejercicioItem of ejercicio.Ejercicios" class="form-check">
+                      <label class="form-check-label">
+                        <input [(ngModel)]="RutinaUsuario.EjerciciosPorEquipo[equipo][ejercicioItem]" class="form-check-input" type="checkbox">
+                        {{ ejercicioItem }}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Selección de imágenes -->
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Portada de la Rutina:</label>
+            <input accept="image/*" title="Imagen" class="form-control" type="file" id="elden" >
+          </div>
+      
+          <!-- Botón de agregar artículo -->
+          <button (click)="Registro()" type="button" title="" class="btn btn-primary btn-lg">Crear Rutina</button>
+          <br><br><br>
+        </div>
+    </div>
+
+<footer></footer>

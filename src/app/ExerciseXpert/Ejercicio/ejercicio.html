@@ -1,0 +1,90 @@
+
+<navbar [Usuario] = "Usuario"></navbar>
+
+
+
+<div class="container" >
+
+
+  <div class="datos">
+    <div class="eltit">
+      <div class="title">
+        {{rutina.Nombre}}
+      </div>
+    </div>
+    <div class="card">
+      <div id="Cuerpo-Cartas" class="card-body">
+        <div class="card-text">
+          <h5 class="title">{{ Ejercicios.NombreEjercicio }}</h5>
+          <h5>Dificultad: {{ Ejercicios.Dificultad }}</h5>
+          <h5>Series: {{ Ejercicios.Series }}</h5>
+          <h5>Musculo: {{ Ejercicios.Musculo }}</h5>
+          <h5>Duracion: {{ Ejercicios.Duracion }}</h5>
+          <h5>Caloria: {{ Ejercicios.Caloria }}</h5>
+        </div>
+        <div style="margin: auto;">
+          <iframe
+            width="400px"
+            height="250px"
+            [src]="videoUrl"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="pag">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item"><button type="button" class="page-link" (click)="Previus()">Previous</button></li>
+        <li class="page-item"><button class="page-link"  >...</button></li>
+        <li class="page-item"><button class="page-link" (click)="Next()">Next</button></li>
+      </ul>
+    </nav>
+  </div>
+
+
+<div class="cronometro">
+
+  <section class="container mt-5 mb-5" name="form_main">
+
+
+    <div class="row mb-5 d-flex justify-content-center">
+      <div class="col-md-6 d-flex justify-content-center fs-1 border border-warning border-5 numbers">
+        <span id="hour">{{rData(hora)}} </span>
+        <span>:</span>
+        <span id="minute"> {{rData(min)}} </span>
+        <span>:</span>
+        <span id="second"> {{rData(seg)}} </span>
+      </div>
+    </div>
+
+
+    <div class="row d-flex justify-content-center">
+      <div class="col d-flex justify-content-center p-0">
+        <button (click)="com()" title="btn1" class="btn btn-success btn-lg" type="button" name="start">
+          <i class="fa fa-play fs-1" aria-hidden="true"></i>
+        </button>
+        <button (click)="pas()" title="2" class="btn btn-danger btn-lg me-4 ms-4" type="button" name="pause">
+          <i class="fa fa-pause fs-1" aria-hidden="true"></i>
+        </button>
+        <button (click)="re()" title="3" class="btn btn-primary btn-lg" type="button" name="reset">
+          <i class="fa fa-undo fs-1" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center">
+      <button (click)="Registrar()" type="button" class="btn btn-primary">Terminar Rutina</button>
+    </div>
+
+  </section>
+
+
+</div>
+</div>

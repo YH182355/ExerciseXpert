@@ -1,0 +1,162 @@
+<navbar [Usuario] = "Usuario"></navbar>
+
+<div id="CalculadoraContainer" class="container">
+<br>  
+  <!-- Título -->
+  <div class="title">
+    Calculadora de Calorias
+  </div>
+
+  <!-- Texto de descripción -->
+  <div class="texto">
+    La calculadora de calorías puede ser utilizada para estimar las calorías que necesitas consumir al día. Esta calculadora también tiene algunas líneas de apoyo por si quieres perder o ganar peso.
+    <br>
+    <br>
+    Esta calculadora utiliza el método de Harris-Benedict para calcular las calorías que necesitas.
+  </div>
+  <br>
+
+  <!-- Formulario -->
+  <div class="row">
+
+    <!-- Columna 1 - Unidades y Sexo -->
+    <div class="col-sm-4">
+
+      <!-- Unidades -->
+      <div class="title">
+        Unidades:
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="unitSystem" id="metricSystem" [(ngModel)]="unitSystem" value="metric">
+        <label class="form-check-label" for="metricSystem">
+          Métrico
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="unitSystem" id="imperialSystem" [(ngModel)]="unitSystem" value="imperial">
+        <label class="form-check-label" for="imperialSystem">
+          Imperial
+        </label>
+      </div>
+      <br>
+
+      <!-- Sexo -->
+      <div class="title">
+        Sexo:
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="male" [(ngModel)]="gender" value="male">
+        <label class="form-check-label" for="male">
+          Hombre
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="female" [(ngModel)]="gender" value="female">
+        <label class="form-check-label" for="female">
+          Mujer
+        </label>
+      </div>
+    </div>
+
+    <!-- Columna 2 - Edad, Altura y Peso -->
+    <div class="col-sm-8">
+
+      <!-- Edad -->
+      <div class="title">
+        Edad:
+      </div>
+      <input type="range" min="1" max="100" [(ngModel)]="Edad">
+      <p>Edad {{ Edad }} años</p>
+
+      <!-- Altura y Peso (dependiendo de las unidades seleccionadas) -->
+      <div class="title">
+        Altura:
+      </div>
+      <div *ngIf="unitSystem === 'metric'">
+        <input type="range" min="1" max="220" [(ngModel)]="height">
+        <p>Altura: {{ height }} cm</p>
+        <div class="title">
+          Peso:
+        </div>
+        <input type="range" min="1" max="300" [(ngModel)]="weight">
+        <p>Peso: {{ weight }} kg</p>
+      </div>
+      <div *ngIf="unitSystem === 'imperial'">
+        <input type="range" min="1" max="200" [(ngModel)]="height">
+        <p>Altura: {{ estatura() }} pulgadas</p>
+        <div class="title">
+          Peso:
+        </div>
+        <input type="range" min="1" max="600" [(ngModel)]="weight">
+        <p>Peso: {{ libras() }} libras</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Opciones de Ejercicio y Metas -->
+  <div class="container">
+    <div class="row">
+
+      <!-- Opciones de Ejercicio -->
+      <div class="col-sm-6">
+        <select [(ngModel)]="selectedTextId" class="custom-select">
+          <option [value]="'text1'" id="text1">Poco a ningun ejercio</option>
+          <option [value]="'text2'" id="text2">Ejercicio ligero (1-3 dias a la semana)</option>
+          <option [value]="'text3'" id="text3">Ejercicio moderado (3-5 dias a la semana)</option>
+          <option [value]="'text4'" id="text4">Ejercicio pesado (6-7 dias a la semana)</option>
+          <option [value]="'text5'" id="text5">Ejercicio muy pesado (dos veces al dia, ejercicios extra pesado)</option>
+        </select>
+      </div>
+
+      <!-- Opciones de Metas (dependiendo de las unidades seleccionadas) -->
+      <div class="col-sm-6">
+        <select *ngIf="unitSystem === 'metric'" [(ngModel)]="selectedTextId1" class="custom-select">
+          <option [value]="'2text1'" id="2text1">Perder un Kg por Semana</option>
+          <option [value]="'2text2'" id="2text2">Perder 0.75 Kg por Semana</option>
+          <option [value]="'2text3'" id="2text3">Perder 0.5 Kg por Semana</option>
+          <option [value]="'2text4'" id="2text4">Perder 0.25 Kg por Semana</option>
+          <option [value]="'2text5'" id="2text5">Mantener el mismo peso</option>
+          <option [value]="'2text6'" id="2text6">Ganar 0.25Kg por Semana</option>
+          <option [value]="'2text7'" id="2text7">Ganar 0.5 Kg por Semana</option>
+          <option [value]="'2text8'" id="2text8">Ganar 0.75 Kg por Semana</option>
+          <option [value]="'2text9'" id="2text9">Ganar un Kg por Semana</option>
+        </select>
+        <select *ngIf="unitSystem === 'imperial'" [(ngModel)]="selectedTextId1" class="custom-select">
+          <option [value]="'2text1'" id="2text1">Perder 2 Lbs por Semana</option>
+          <option [value]="'2text2'" id="2text2">Perder 1.5 Lbs por Semana</option>
+          <option [value]="'2text3'" id="2text3">Perder 1 Lbs por Semana</option>
+          <option [value]="'2text4'" id="2text4">Perder 0.5 Lbs por Semana</option>
+          <option [value]="'2text5'" id="2text5">Mantener el mismo peso</option>
+          <option [value]="'2text6'" id="2text6">Ganar 0.5 Lbs por Semana</option>
+          <option [value]="'2text7'" id="2text7">Ganar 1.0 Lbs por Semana</option>
+          <option [value]="'2text8'" id="2text8">Ganar 1.5 Lbs por Semana</option>
+          <option [value]="'2text9'" id="2text9">Ganar 2 Lbs por Semana</option>
+        </select>
+      </div>
+
+    </div>
+  </div>
+
+  <br><br>
+
+  <!-- Botón y Resultado -->
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="title" >
+        Tu tendrías que consumir: {{result}} Calorias
+      </div>
+    </div>
+
+    <!-- Botón -->
+    <div class="col-sm-6">
+      <div class="result-container">
+        <label class="result-label" id="resultLabel"></label>
+        <button class="btn btn-primary" (click)="Calorias()">Calcular</button>
+      </div>
+    </div>
+  </div>
+<br><br>
+</div>
+
+<Foooter></Foooter>
